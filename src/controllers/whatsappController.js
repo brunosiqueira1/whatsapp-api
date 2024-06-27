@@ -5,7 +5,7 @@ let client;
 const generateQRCode = async (req, res) => {
     if (!client) {
         client = await venom.create(
-            'sessionName',
+            'Bruno Whats',
             (base64Qrimg, asciiQR, attempts, urlCode) => {
                 console.log(asciiQR); // Optional to log the ASCII QR Code to the console
                 res.send(`<img src="${base64Qrimg}"/>`);
