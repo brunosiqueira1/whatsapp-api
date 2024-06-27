@@ -1,16 +1,25 @@
 const express = require('express');
-const dotenv = require('dotenv');
-const path = require('path');
-const whatsappRoutes = require('./routes/message');
-
-dotenv.config();
 const app = express();
+const path = require('path');
 
-app.use(express.json());
+// Middleware para servir arquivos estáticos
 app.use(express.static(path.join(__dirname, 'views')));
-app.use('/api', whatsappRoutes);
 
-const PORT = process.env.PORT || 3000;
+// Rota para servir o index.html
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'views', 'index.html'));
+});
+
+// Rota para conectar ao WhatsApp
+app.get('/connect', (req, res) => {
+    // Lógica para conectar ao WhatsApp aqui
+    res.send('Conectado ao WhatsApp!');
+});
+
+// Definição da porta
+const PORT = process.env.PORT || 3000; // Acessa a variável de ambiente diretamente
+
+// Iniciar servidor
 app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
+    console.log(`Servidor iniciado na porta ${PORT}`);
 });
