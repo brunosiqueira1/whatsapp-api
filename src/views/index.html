@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WhatsApp API</title>
+</head>
+
+<body>
+    <h1>Connect WhatsApp</h1>
+    <button onclick="connectWhatsApp()">Connect</button>
+    <div id="qr-code"></div>
+    <script>
+        function connectWhatsApp() {
+            fetch('/api/connect')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('qr-code').innerHTML = data;
+                })
+                .catch(error => console.error('Error:', error));
+        }
+    </script>
+</body>
+
+</html>
